@@ -15,10 +15,10 @@ class ApiClient{
 
   }
 
-  private function setUpRequest(){
-    header("Access-Control-Allow-Orgin: *");
-    header("Access-Control-Allow-Methods: *");
-  }
+//  private function setUpRequest(){
+//    header("Access-Control-Allow-Orgin: *");
+//    header("Access-Control-Allow-Methods: *");
+//  }
 
   public function login($params, $cookie){
 //    $this->setUpRequest();
@@ -96,11 +96,46 @@ class ApiClient{
     return $decoded['admin'] === '1';
   }
 
+  public function getUserInfo($username){
+
+    //TODO
+    //name
+    //email
+    //cardID
+    //authyId
+    //TAKE currentPassword
+    //Take new PASsword
+    //Take confirm new PASsword
+    return "";
+  }
+
+  public function getAllUsers($username){
+    //Check if admin
+
+    return array('InactiveUsers' => array(""), "ActiveUsers" => array(""), "Admins" => array(""));
+  }
+
+  public function registerUser($username){
+
+  }
+
+  public function changeUser($username){
+
+  }
+
+  public function updateUserInfo($username){
+
+  }
+
   public function changePassword(){
 
   }
 
   public function forgotPassword(){
+
+  }
+
+  public function resetPassword($username){
 
   }
 
