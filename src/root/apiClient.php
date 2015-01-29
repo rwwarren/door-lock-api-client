@@ -1,18 +1,6 @@
 <?php
 
-
-
 namespace ApiClient;
-
-//require __DIR__.'/../../../door-lock/web/src/vendor/predis/predis/src/Autoloader.php';
-////require __DIR__.'/../../../../door-lock/web/src/vendor/predis/predis/src/Autoloader.php';
-//\Predis\Autoloader::register();
-//$client = new \Predis\Client([
-//  'scheme' => 'tcp',
-//  'host'   => '127.0.0.1',
-//  //'host'   => '10.0.0.1',
-//  'port'   => 6379,
-//]);
 
 class ApiClient{
 
@@ -43,46 +31,69 @@ class ApiClient{
 //    curl_setopt($ch,CURLOPT_POST, count($fields));
 //    curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
     curl_setopt($ch,CURLOPT_POSTFIELDS, array('username'=>$params['Username'],'password'=>$params['Password']));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+//    curl_setopt($ch,CURLOPT_POSTFIELDS, array('username'=>'test','password'=>'password', 'DoorLock-Api-Key'=>'test'));
+
+    //execute post
+    $result = curl_exec($ch);
+//    print_r($result);
+//    echo "sadf: " . get_class($result);
+//    echo "sadf: " . $result['name'];
+//    echo $result;
+
+    //close connection
+    curl_close($ch);
+//    return $result;
+    return json_encode($result, true);
+  }
+
+  public function logout($cookie){
+    $ch = curl_init();
+
+    //set the url, number of POST vars, POST data
+    curl_setopt($ch,CURLOPT_URL, "$this->apiUrl/logout");
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array("X-DoorLock-Api-Key: $this->apiKey", "sid: $cookie"));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+//    curl_setopt($ch,CURLOPT_POST, count($fields));
+//    curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+//    curl_setopt($ch,CURLOPT_POSTFIELDS, array('username'=>$params['Username'],'password'=>$params['Password']));
 //    curl_setopt($ch,CURLOPT_POSTFIELDS, array('username'=>'test','password'=>'password', 'DoorLock-Api-Key'=>'test'));
 
     //execute post
     $result = curl_exec($ch);
 
+    print_r($result);
+    echo $result;
+
     //close connection
     curl_close($ch);
-    return $result;
+    return json_encode($result);
   }
 
-  public function logout(){
-
+  //Return if the user is logged in
+  public function isLoggedIn($cookie){
+    $ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL, "$this->apiUrl/IsLoggedIn");
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array("X-DoorLock-Api-Key: $this->apiKey", "sid: $cookie"));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $decoded = json_decode($result, true);
+    return $decoded['success'] !== '0' ;
   }
 
-  public function isLoggedIn($sid){
-//    echo __DIR__;
-//    global $client;
-//    $userID = $client->hget('apiKeys', sid);
-    include_once __DIR__.'/../../../door-lock/web/src/vendor/predis/predis/src/Autoloader.php';
-//    require_once __DIR__.'/../../../door-lock/web/src/vendor/predis/predis/src/Autoloader.php';
-//require __DIR__.'/../../../../door-lock/web/src/vendor/predis/predis/src/Autoloader.php';
-    \Predis\Autoloader::register();
-    $client = new \Predis\Client([
-      'scheme' => 'tcp',
-      'host'   => '127.0.0.1',
-      //'host'   => '10.0.0.1',
-      'port'   => 6379,
-    ]);
-//    echo $client->hget('loggedInUsers', $sid);
-    return $client->hget('loggedInUsers', $sid);
-//    return
-//    return isset($_SESSION['username']) && $_SESSION['username'] !== null;
-  }
-
-  public function isAdmin($sid){
-//    echo __DIR__;
-    global $client;
-    $userID = $client->hget('apiKeys', sid);
-//    return
-    return isset($_SESSION['username']) && $_SESSION['username'] !== null;
+  //Returns if the user is an admin
+  public function isAdmin($cookie){
+    $ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL, "$this->apiUrl/IsAdmin");
+    curl_setopt($ch,CURLOPT_HTTPHEADER,array("X-DoorLock-Api-Key: $this->apiKey", "sid: $cookie"));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $decoded = json_decode($result, true);
+    return $decoded['admin'] === '1';
   }
 
   public function changePassword(){
