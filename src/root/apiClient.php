@@ -7,9 +7,10 @@ class ApiClient{
   private $apiKey;
   private $apiUrl;
 
-  public function __construct(){
-    $root = realpath(dirname(__FILE__));
-    $config = parse_ini_file("$root/../properties/secure.ini");
+  public function __construct($location = null){
+    $root = realpath(dirname(__FILE__)) . "/../properties/secure.ini";
+    $location = ($location === null) ? $root : $location;
+    $config = parse_ini_file($location);
     $this->apiKey = $config['api.key'];
     $this->apiUrl = $config['api.url'];
 
