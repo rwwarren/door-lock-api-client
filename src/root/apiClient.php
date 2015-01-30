@@ -35,7 +35,7 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    echo json_encode($result, true);
+    return json_encode($result, true);
   }
 
   //Return if the user is logged in
