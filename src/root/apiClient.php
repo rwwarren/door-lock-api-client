@@ -47,7 +47,7 @@ class ApiClient{
     $result = curl_exec($ch);
     curl_close($ch);
     $decoded = json_decode($result, true);
-    return $decoded['success'] !== '0' ;
+    return $decoded;
   }
 
   //Returns if the user is an admin
