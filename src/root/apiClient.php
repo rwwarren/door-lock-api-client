@@ -25,7 +25,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result, true);
+    return json_decode($result, true);
+//    return json_encode($result, true);
   }
 
   public function logout($cookie){
@@ -35,7 +36,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result, true);
+    return json_decode($result, true);
+//    return json_encode($result, true);
   }
 
   //Return if the user is logged in
@@ -70,7 +72,7 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
     //TODO
     //name
     //email
@@ -105,7 +107,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
     //isset($_POST['personName']) && isset($_POST['username'])&&
     //isset($_POST['password']) && isset($_POST['email']) && isAdmin() && isset($_POST['admin']
   }
@@ -119,7 +122,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
   }
 
   public function updateUserInfo($params, $cookie){
@@ -133,7 +137,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
     //name
     //email
     //cardID
@@ -157,7 +162,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
   }
 
   public function resetPassword($params, $cookie){
@@ -169,7 +175,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
   }
 
   public function lockStatus(){
@@ -180,7 +187,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
   }
 
   public function lock($cookie){
@@ -191,7 +199,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
   }
 
   public function unlock($cookie){
@@ -202,7 +211,8 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-    return json_encode($result);
+    return json_decode($result, true);
+//    return json_encode($result);
   }
 
 }
