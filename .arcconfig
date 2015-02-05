@@ -1,0 +1,4 @@
+{
+  "unit.engine" : "PhpunitTestEngine",
+  "phpunit_config": "phpunit.xml"
+}

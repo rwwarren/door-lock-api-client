@@ -8,9 +8,9 @@ class apiClientTest extends PHPUnit_Framework_TestCase {
    * @test
    */
   public function testLogin(){
-    $client = new ApiClient;
+    $client = new ApiClient\ApiClient();
     $this->assertTrue($client !== null);
-    $this->assertTrue($client->login() !== null);
+    $this->assertTrue($client->login(array("Username" => "", "Password" => ""),"") !== null);
 
   }
 
@@ -18,9 +18,9 @@ class apiClientTest extends PHPUnit_Framework_TestCase {
    * @test
    */
   public function testLogout(){
-    $client = new ApiClient;
+    $client = new ApiClient\ApiClient;
     $this->assertTrue($client !== null);
-    $this->assertTrue($client->logout() !== null);
+    $this->assertTrue($client->logout("") === null);
 
   }
 
