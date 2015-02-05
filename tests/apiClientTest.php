@@ -14,4 +14,14 @@ class apiClientTest extends PHPUnit_Framework_TestCase {
 
   }
 
+  /**
+   * @test
+   */
+  public function testLogout(){
+    $client = new ApiClient;
+    $this->assertTrue($client !== null);
+    $this->assertTrue($client->logout() !== null);
+
+  }
+
 }
