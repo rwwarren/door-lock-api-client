@@ -170,7 +170,7 @@ class ApiClient{
     return json_decode($result, true);
   }
 
-  public function lockStatus(){
+  public function lockStatus($cookie){
     //TODO LockStatus
     $ch = curl_init();
     curl_setopt($ch,CURLOPT_URL, "$this->apiUrl/LockStatus");
