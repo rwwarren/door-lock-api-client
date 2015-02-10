@@ -141,10 +141,6 @@ class ApiClient{
     //Take confirm new PASsword
   }
 
-//  public function changePassword(){
-////NOt this??
-//  }
-
   public function forgotPassword($params){
     //TODO ForgotPassword
     $ch = curl_init();
