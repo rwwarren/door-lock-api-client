@@ -61,7 +61,6 @@ class ApiClient{
   }
 
   public function getUserInfo($cookie){
-    //TODO GetUserInfo
     $ch = curl_init();
     curl_setopt($ch,CURLOPT_URL, "$this->apiUrl/GetUserInfo");
     curl_setopt($ch,CURLOPT_HTTPHEADER,array("X-DoorLock-Api-Key: $this->apiKey", "sid: $cookie"));
@@ -69,12 +68,6 @@ class ApiClient{
     $result = curl_exec($ch);
     curl_close($ch);
     return json_decode($result, true);
-    //TODO
-    //name
-    //email
-    //cardID
-    //authyId
-//    return "";
   }
 
   public function getAllUsers($cookie){

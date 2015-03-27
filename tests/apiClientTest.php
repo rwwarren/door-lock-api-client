@@ -121,6 +121,11 @@ class apiClientTest extends PHPUnit_Framework_TestCase {
 //    $client = new ApiClient\ApiClient;
 //    $this->assertTrue($client !== null);
 //    $this->assertTrue($client->getUserInfo("") === null);
+    assertThat("Client should not be null", $this->client, not(equalTo(null)));
+    $result = $this->client->getUserInfo("test");
+//    sleep(100);
+    assertThat("Client is get user info result should not be null", $result, not(equalTo(null)));
+    assertThat("Client get user info to equal", $result['ID'], equalTo("test"));
 
   }
 
