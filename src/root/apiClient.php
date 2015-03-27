@@ -199,6 +199,10 @@ class ApiClient{
     return json_decode($result, true);
   }
 
+  public function getUrl(){
+    return $this->apiUrl;
+  }
+
 }
 
 ?>

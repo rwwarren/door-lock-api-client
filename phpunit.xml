@@ -1,4 +1,4 @@
-<phpunit>
+<phpunit bootstrap="./tests/bootstrap.php">
   <testsuites>
     <testsuite name="Door Lock Webapp Test Suite">
       <directory>./tests</directory>
@@ -7,4 +7,13 @@
   <logging>
     <log type="coverage-clover" target="build/logs/clover.xml"/>
   </logging>
+  <php>
+    <!--$root = realpath(dirname(__FILE__))-->
+    <const name="WEB_SERVER_HOST" value="localhost" />
+    <const name="WEB_SERVER_PORT" value="1349" />
+    <!--<const name="WEB_SERVER_DOCROOT" value="realpath(dirname(__FILE__))/tests/routes" />-->
+    <const name="WEB_SERVER_DOCROOT" value="./tests/routes" />
+    <!--<const name="WEB_SERVER_DOCROOT" value="$root/tests/routes" />-->
+    <!--<const name="WEB_SERVER_DOCROOT" value="/Users/ryan/Documents/door-lock-api-client/tests/routes" />-->
+  </php>
 </phpunit>
