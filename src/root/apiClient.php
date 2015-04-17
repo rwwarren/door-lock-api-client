@@ -79,9 +79,7 @@ class ApiClient{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = curl_exec($ch);
     curl_close($ch);
-//    return json_decode($result, true);
-
-    return array('InactiveUsers' => array(""), "ActiveUsers" => array(""), "Admins" => array(""));
+    return json_decode($result, true);
   }
 
   public function registerUser($params, $cookie){
